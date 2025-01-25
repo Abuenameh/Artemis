@@ -18,6 +18,7 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
         env_file:
             - ./artemis/config/postgres.env
+            - ./artemis/config/prod-uwi-fic.env
     postgres:
         extends:
             file: ./postgres.yml
