@@ -158,7 +158,6 @@ public class BuildJobGitService extends AbstractGitService {
     }
 
     private CredentialsProvider getCachedCredentialsProvider() {
-        log.warn("Build agent Git credentials: {} {}", buildAgentGitUsername, buildAgentGitPassword);
         if (credentialsProvider == null) {
             credentialsProvider = new UsernamePasswordCredentialsProvider(buildAgentGitUsername, buildAgentGitPassword);
         }
