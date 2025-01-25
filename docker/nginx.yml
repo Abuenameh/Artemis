@@ -18,8 +18,8 @@ services:
             - ./nginx/dhparam.pem:/etc/nginx/dhparam.pem:ro
             - ./nginx/nginx_503.html:/usr/share/nginx/html/503.html:ro
             - ./nginx/70-artemis-setup.sh:/docker-entrypoint.d/70-artemis-setup.sh
-            - ../src/test/playwright/certs/artemis-nginx+4.pem:/certs/fullchain.pem:ro
-            - ../src/test/playwright/certs/artemis-nginx+4-key.pem:/certs/priv_key.pem:ro
+            - /etc/letsencrypt/live/artemis.abuenameh.com/fullchain.pem:/certs/fullchain.pem:ro
+            - /etc/letsencrypt/live/artemis.abuenameh.com/privkey.pem:/certs/priv_key.pem:ro
         # ulimits adopted from the nginx_security_limits.conf in the Artemis ansible collection
         ulimits:
             nofile:
