@@ -118,7 +118,6 @@ public class BuildJobGitService extends AbstractGitService {
         FileUtils.deleteDirectory(localPath.toFile());
         Git git = null;
         try {
-            log.warn("Clone going to be called: {} {} {} {}", gitUriAsString, localPath, repoUri, defaultBranch);
             CloneCommand cloneCommand = cloneCommand().setURI(gitUriAsString).setDirectory(localPath.toFile());
             git = cloneCommand.call();
             return getExistingCheckedOutRepositoryByLocalPath(localPath, repoUri, defaultBranch);
