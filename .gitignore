@@ -221,3 +221,4 @@ data-exports/
 ##############################
 /supporting_scripts/**/*.ini
 /legal
+prod-uwi-fic.env
