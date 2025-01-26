@@ -5,6 +5,7 @@ import static de.tum.cit.aet.artemis.core.config.Constants.PROFILE_BUILDAGENT;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 
@@ -38,6 +39,9 @@ import de.tum.cit.aet.artemis.programming.service.AbstractGitService;
 public class BuildJobGitService extends AbstractGitService {
 
     private static final Logger log = LoggerFactory.getLogger(BuildJobGitService.class);
+
+    @Value("${artemis.version-control.docker-url}")
+    protected URL gitUrl;
 
     @Value("${artemis.version-control.build-agent-git-username}")
     private String buildAgentGitUsername;
