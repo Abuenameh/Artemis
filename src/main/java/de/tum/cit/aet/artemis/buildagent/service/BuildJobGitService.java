@@ -85,7 +85,7 @@ public class BuildJobGitService extends AbstractGitService {
      */
     @Override
     protected URI getGitUri(VcsRepositoryUri vcsRepositoryUri) throws URISyntaxException {
-        return useSsh() ? getSshUri(vcsRepositoryUri, sshUrlTemplate) : vcsRepositoryUri.getURI();
+        return useSsh() ? getSshUri(vcsRepositoryUri, sshUrlTemplate) : gitUrl.toURI();
     }
 
     /**
