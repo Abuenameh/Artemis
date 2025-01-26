@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import de.tum.cit.aet.artemis.core.exception.GitException;
 import de.tum.cit.aet.artemis.programming.domain.Repository;
@@ -40,8 +41,14 @@ public class BuildJobGitService extends AbstractGitService {
 
     private static final Logger log = LoggerFactory.getLogger(BuildJobGitService.class);
 
-    @Value("${artemis.version-control.docker-url}")
-    protected URL gitUrl;
+    @Value("${artemis.version-control.docker-url-scheme:http}")
+    protected String dockerUrlScheme;
+
+    @Value("${artemis.version-control.docker-url-host:localhost}")
+    protected String dockerUrlHost;
+
+    @Value("${artemis.version-control.docker-url-port:-1}")
+    protected int dockerUrlPort;
 
     @Value("${artemis.version-control.build-agent-git-username}")
     private String buildAgentGitUsername;
@@ -85,7 +92,7 @@ public class BuildJobGitService extends AbstractGitService {
      */
     @Override
     protected URI getGitUri(VcsRepositoryUri vcsRepositoryUri) throws URISyntaxException {
-        return useSsh() ? getSshUri(vcsRepositoryUri, sshUrlTemplate) : gitUrl.toURI();
+        return useSsh() ? getSshUri(vcsRepositoryUri, sshUrlTemplate) : UriComponentsBuilder.fromUri(vcsRepositoryUri.getURI()).scheme(dockerUrlScheme).host(dockerUrlHost).port(dockerUrlPort).build().toUri();
     }
 
     /**
