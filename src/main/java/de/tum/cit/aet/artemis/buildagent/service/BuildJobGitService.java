@@ -121,7 +121,6 @@ public class BuildJobGitService extends AbstractGitService {
             log.warn("Clone going to be called: {} {} {} {}", gitUriAsString, localPath, repoUri, defaultBranch);
             CloneCommand cloneCommand = cloneCommand().setURI(gitUriAsString).setDirectory(localPath.toFile());
             git = cloneCommand.call();
-            log.warn("Clone called: {} {} {} {}", git, localPath, repoUri, defaultBranch);
             return getExistingCheckedOutRepositoryByLocalPath(localPath, repoUri, defaultBranch);
         }
         finally {
